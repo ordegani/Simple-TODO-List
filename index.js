@@ -9,7 +9,7 @@ const saveNewTask = document.querySelector("[data-update]");
 const container = document.createElement("div");
 
 //DATA>
-const data=[];
+const data = [];
 
 function createTask() {
   //add if loop to check if a task has already been added to list, and if it has been added don't add it again.
@@ -23,7 +23,7 @@ function createTask() {
   completeTask.textContent = "Complete";
   completeTask.setAttribute("class", "complete");
   newTask.append(taskName, deleteTask, editTask, completeTask);
-  data.push({taskName:taskName, completed:completeTask.textContent});
+  data.push({ taskName: taskName, completed: completeTask.textContent });
   console.log(data);
   container.appendChild(newTask);
   body.appendChild(container);
@@ -40,17 +40,17 @@ function createTask() {
   }
   completeTask.addEventListener("click", isComplete);
 
-  function deleteThisTask(e){
-      console.log(e.target.parentElement);
-      e.target.parentElement.remove();
+  function deleteThisTask(e) {
+    console.log(e.target.parentElement);
+    e.target.parentElement.remove();
   }
-  deleteTask.addEventListener("click",deleteThisTask);
-//continue here(this function is tests for now)>
-  function deleteCompleted(){
-      for(i=0; i<data.length; i++){
-          console.log(i);
-          };
-      }
+  deleteTask.addEventListener("click", deleteThisTask);
+  //continue here(this function is tests for now)>
+  function deleteCompleted() {
+    for (i = 0; i < data.length; i++) {
+      console.log(i);
+    }
+  }
   deleteCompletedBtn.addEventListener("click", deleteCompleted);
 }
 
