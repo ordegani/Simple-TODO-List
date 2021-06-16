@@ -15,21 +15,42 @@ function createTask() {
   //add if loop to check if a task has already been added to list, and if it has been added don't add it again.
   const taskName = updateTask.value;
   const newTask = document.createElement("div");
-  data.push({ task: updateTask.value });
   const deleteTask = document.createElement("button");
   deleteTask.textContent = "Delete";
   const editTask = document.createElement("button");
   editTask.textContent = "Edit";
   const completeTask = document.createElement("button");
   completeTask.textContent = "Complete";
+  completeTask.setAttribute("class", "complete");
   newTask.append(taskName, deleteTask, editTask, completeTask);
+  data.push(newTask);
+  console.log(data);
   container.appendChild(newTask);
   body.appendChild(container);
+
+  function deleteAll() {
+    const data = [];
+    container.remove();
+  }
+  deleteAllBtn.addEventListener("click", deleteAll);
+
+  function isComplete() {
+    completeTask.textContent = "Completed!";
+    completeTask.setAttribute("class", "completed");
+  }
+  completeTask.addEventListener("click", isComplete);
 }
+
 saveNewTask.addEventListener("click", createTask);
 
-function deleteAll() {
-  const data = [];
-  container.remove();
-}
-deleteAllBtn.addEventListener("click", deleteAll);
+// function deleteAll() {
+//   const data = [];
+//   container.remove();
+// }
+// deleteAllBtn.addEventListener("click", deleteAll);
+
+// function isComplete(){
+//     completeTask.textContent="Completed!";
+//     completeTask.setAttribute("class", "completed");
+// }
+// completeTask.addEventListener("click", isComplete);
