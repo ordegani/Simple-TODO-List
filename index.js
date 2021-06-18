@@ -9,7 +9,7 @@ const saveNewTask = document.querySelector("[data-update]");
 const container = document.createElement("div");
 
 //DATA>
-const data = [];
+let data = [];
 
 function createTask() {
   //add if loop to check if a task has already been added to list, and if it has been added don't add it again.
@@ -23,8 +23,8 @@ function createTask() {
   completeTask.textContent = "Complete";
   completeTask.setAttribute("class", "complete");
   newTask.append(taskName, deleteTask, editTask, completeTask);
-  data.push({ taskName: taskName, completed: completeTask.textContent });
-  console.log(data);
+//   data.push({ taskName: taskName, completed: completeTask.textContent });
+//   console.log(data);
   container.appendChild(newTask);
   body.appendChild(container);
 
@@ -34,10 +34,12 @@ function createTask() {
   }
   deleteAllBtn.addEventListener("click", deleteAll);
 
+
   function isComplete() {
     completeTask.textContent = "Completed!";
     completeTask.setAttribute("class", "completed");
   }
+
   completeTask.addEventListener("click", isComplete);
 
   function deleteThisTask(e) {
@@ -45,13 +47,35 @@ function createTask() {
     e.target.parentElement.remove();
   }
   deleteTask.addEventListener("click", deleteThisTask);
+
   //continue here(this function is tests for now)>
   function deleteCompleted() {
-    for (i = 0; i < data.length; i++) {
-      console.log(i);
-    }
+      if (completeTask.textContent=="Completed!"){
+        data.push(true)
+    };
+  if (completeTask.textContent!=="Completed!"){
+      data.push(false)
+  }
+  //loop over data and remove true+remove the tasks div
+  for(i=0;i<data.length;i++){
+      if(i==true){
+          data = data.slice(data[i])
+      }
+  }
+  console.log(data);
+
+  console.log(container);
+  console.log(container.nth-appendChild(2));
+//   var arr = Array.from((document.getElementsByClassName('div')))
+//   const x= document.getElementsByTagName("container");
+// console.log(HTMLCollection);
+//   console.log(container.item(1));
   }
   deleteCompletedBtn.addEventListener("click", deleteCompleted);
+
+  function edit(){
+      
+  }
 }
 
 saveNewTask.addEventListener("click", createTask);
