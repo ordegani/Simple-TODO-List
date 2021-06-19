@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+body{
+    font-family: 'Playfair Display', serif;
+}
+.title{
+    color: rgb(78, 78, 216);
+}
 .completed{
     background-color: green;
 }
-.container {
+.container{
     display: grid;
     grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
     /* grid-template-rows: 20vh 20vh 20vh 20vh 20vh;    */
@@ -9,4 +16,8 @@
 .newTask{
     grid-column-start: 3;
     grid-column-end: 3;
+}
+.topForm{
+    display: flex; 
+    justify-content: center;
 }
