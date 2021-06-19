@@ -7,14 +7,19 @@ const input_field_title = document.querySelector(".input_field_title");
 const updateTask = document.querySelector("input[name='update-task']");
 const saveNewTask = document.querySelector("[data-update]");
 const container = document.createElement("div");
+container.setAttribute("class", "container");
 
 //DATA>
-let data = [];
+let data = [{}];
+
+let x = "not completed yet";
 
 function createTask() {
   //add if loop to check if a task has already been added to list, and if it has been added don't add it again.
-  const taskName = updateTask.value;
-  const newTask = document.createElement("div");
+  let taskName = document.createElement("div");
+  taskName.textContent = updateTask.value;
+  let newTask = document.createElement("div");
+  newTask.setAttribute("class", "newTask");
   const deleteTask = document.createElement("button");
   deleteTask.textContent = "Delete";
   const editTask = document.createElement("button");
@@ -23,10 +28,16 @@ function createTask() {
   completeTask.textContent = "Complete";
   completeTask.setAttribute("class", "complete");
   newTask.append(taskName, deleteTask, editTask, completeTask);
-//   data.push({ taskName: taskName, completed: completeTask.textContent });
-//   console.log(data);
+  data.push({ taskName: taskName, completed: x });
+  console.log(data);
   container.appendChild(newTask);
   body.appendChild(container);
+
+  data.forEach((task, index) => {
+    const taskEl = document.createElement("div");
+    taskEl.textContent = task.task;
+    container.append(taskEl);
+  });
 
   function deleteAll() {
     const data = [];
@@ -38,6 +49,7 @@ function createTask() {
   function isComplete() {
     completeTask.textContent = "Completed!";
     completeTask.setAttribute("class", "completed");
+    x="completed already";
   }
 
   completeTask.addEventListener("click", isComplete);
@@ -48,46 +60,87 @@ function createTask() {
   }
   deleteTask.addEventListener("click", deleteThisTask);
 
-  //continue here(this function is tests for now)>
-  function deleteCompleted() {
-      if (completeTask.textContent=="Completed!"){
-        data.push(true)
-    };
-  if (completeTask.textContent!=="Completed!"){
-      data.push(false)
-  }
-  //loop over data and remove true+remove the tasks div
-  for(i=0;i<data.length;i++){
-      if(i==true){
-          data = data.slice(data[i])
-      }
-  }
-  console.log(data);
 
-  console.log(container);
-  console.log(container.nth-appendChild(2));
+  function deleteCompleted() {
+    //change completed in data object to another value from "complete"
+
+  //     if (completeTask.textContent=="Completed!"){
+  //       data.completed="completed";
+  //   };
+  // if (completeTask.textContent!=="Completed!"){
+  //     data.push(false)
+  // }
+  //loop over data and remove true+remove the tasks div
+
+  // for(i=0;i<data.length;i++){
+  //     if(i==true){
+  //         data = data.slice(data[i])
+  //     }
+  // }
+  // console.log(data);
+
+  // console.log(container);
+  // console.log(container.nth-appendChild(2));
+  
 //   var arr = Array.from((document.getElementsByClassName('div')))
 //   const x= document.getElementsByTagName("container");
 // console.log(HTMLCollection);
 //   console.log(container.item(1));
   }
   deleteCompletedBtn.addEventListener("click", deleteCompleted);
-
+  
+  const editor = document.createElement("input");
+  const updateTask2 = document.createElement("button");
   function edit(){
-      
-  }
+  updateTask2.textContent = "Done";
+  body.append(editor);
+  body.append(updateTask2);
+  newTask.append(editor);
+  newTask.append(updateTask2);
+  editor.setAttribute("name", "update-task2");
+  editor.setAttribute("type", "text");
+  editor.setAttribute("placeholder", "your edit");
+  updateTask2.setAttribute("name", "[data-update2]"); 
+  console.log(editor);
+}
+  editTask.addEventListener("click", edit);
+
+
+
+
+function editBtn(e){
+  newTask.remove();
+  let taskName2 = document.createElement("div");
+  taskName2.textContent=editor.value;
+  console.log((editor.value));
+  const newTask2 = document.createElement("div");
+  newTask2.append(taskName2, deleteTask, editTask, completeTask);
+  newTask2.setAttribute("class", "newTask");
+  container.append(newTask2);
+  body.appendChild(container);
+
 }
 
+
+
+
+updateTask2.addEventListener("click", editBtn);
+
+function isComplete(){
+  completeTask.textContent="Completed!";
+  completeTask.setAttribute("class", "completed");
+}
+completeTask.addEventListener("click", isComplete);
+
+}
 saveNewTask.addEventListener("click", createTask);
 
-// function deleteAll() {
-//   const data = [];
-//   container.remove();
-// }
-// deleteAllBtn.addEventListener("click", deleteAll);
+function deleteAll() {
+  const data = [];
+  container.remove();
+}
+deleteAllBtn.addEventListener("click", deleteAll);
 
-// function isComplete(){
-//     completeTask.textContent="Completed!";
-//     completeTask.setAttribute("class", "completed");
-// }
-// completeTask.addEventListener("click", isComplete);
+
+
+
