@@ -92,6 +92,7 @@ function createTask() {
 
 
 function editBtn(e){
+  //change to edit existing taskName.textContent
   newTask.remove();
   let taskName2 = document.createElement("div");
   taskName2.textContent=editor.value;
