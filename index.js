@@ -10,9 +10,9 @@ const container = document.createElement("div");
 container.setAttribute("class", "container");
 
 //DATA>
-let data = [{}];
+let data = [];
 
-let x = "not completed yet";
+let x="to be completed";
 
 function createTask() {
   //add if loop to check if a task has already been added to list, and if it has been added don't add it again.
@@ -28,7 +28,7 @@ function createTask() {
   completeTask.textContent = "Complete";
   completeTask.setAttribute("class", "complete");
   newTask.append(taskName, deleteTask, editTask, completeTask);
-  data.push({ taskName: taskName, completed: x });
+  data.push({ taskName: taskName.textContent, completed: x });
   console.log(data);
   container.appendChild(newTask);
   body.appendChild(container);
@@ -49,7 +49,7 @@ function createTask() {
   function isComplete() {
     completeTask.textContent = "Completed!";
     completeTask.setAttribute("class", "completed");
-    x="completed already";
+    
   }
 
   completeTask.addEventListener("click", isComplete);
@@ -62,6 +62,14 @@ function createTask() {
 
 
   function deleteCompleted() {
+    data.forEach((taskEl) => {
+     if( completeTask.getAttribute("class")=="completed"){
+       newTask.remove();
+     }
+  });
+ 
+      
+  
     //change completed in data object to another value from "complete"
 
   //     if (completeTask.textContent=="Completed!"){
@@ -126,12 +134,23 @@ function editBtn(e){
 
 updateTask2.addEventListener("click", editBtn);
 
-function isComplete(){
+function isComplete(e){
+  //by accessing html collection
   completeTask.textContent="Completed!";
   completeTask.setAttribute("class", "completed");
+
+  console.log(e.target.parentElement.lastChild.getAttribute("class"));
+
+  //by accessing data array in local storage
+  x="completed already";
+  console.log(x);
+  // console.log(data);
+  // console.log( data[0]);
+  // console.log(data[0].completed);
 }
 completeTask.addEventListener("click", isComplete);
 
+localStorage.setItem("data", JSON.stringify(data));
 }
 saveNewTask.addEventListener("click", createTask);
 
