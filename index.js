@@ -69,31 +69,6 @@ function createTask() {
   });
  
       
-  
-    //change completed in data object to another value from "complete"
-
-  //     if (completeTask.textContent=="Completed!"){
-  //       data.completed="completed";
-  //   };
-  // if (completeTask.textContent!=="Completed!"){
-  //     data.push(false)
-  // }
-  //loop over data and remove true+remove the tasks div
-
-  // for(i=0;i<data.length;i++){
-  //     if(i==true){
-  //         data = data.slice(data[i])
-  //     }
-  // }
-  // console.log(data);
-
-  // console.log(container);
-  // console.log(container.nth-appendChild(2));
-  
-//   var arr = Array.from((document.getElementsByClassName('div')))
-//   const x= document.getElementsByTagName("container");
-// console.log(HTMLCollection);
-//   console.log(container.item(1));
   }
   deleteCompletedBtn.addEventListener("click", deleteCompleted);
   
@@ -161,5 +136,31 @@ function deleteAll() {
 deleteAllBtn.addEventListener("click", deleteAll);
 
 
+
+//DRAFTS NOTES
+  //change completed in data object to another value from "complete"
+
+  //     if (completeTask.textContent=="Completed!"){
+  //       data.completed="completed";
+  //   };
+  // if (completeTask.textContent!=="Completed!"){
+  //     data.push(false)
+  // }
+  //loop over data and remove true+remove the tasks div
+
+  // for(i=0;i<data.length;i++){
+  //     if(i==true){
+  //         data = data.slice(data[i])
+  //     }
+  // }
+  // console.log(data);
+
+  // console.log(container);
+  // console.log(container.nth-appendChild(2));
+  
+//   var arr = Array.from((document.getElementsByClassName('div')))
+//   const x= document.getElementsByTagName("container");
+// console.log(HTMLCollection);
+//   console.log(container.item(1));
 
 
