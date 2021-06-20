@@ -131,6 +131,7 @@ localStorage.setItem("data", JSON.stringify(data));
 saveNewTask.addEventListener("click", createTask);
 
 function deleteAll() {
+  //delete from localStorage
   const data = [];
   container.remove();
 }
