@@ -1,4 +1,3 @@
-
 //Query Selectors>
 const body = document.querySelector("body");
 const title = document.querySelector(".title");
