@@ -1,3 +1,4 @@
+
 //Query Selectors>
 const body = document.querySelector("body");
 const title = document.querySelector(".title");
@@ -33,23 +34,24 @@ function createTask() {
   container.appendChild(newTask);
   body.appendChild(container);
 
-  data.forEach((task, index) => {
-    const taskEl = document.createElement("div");
-    taskEl.textContent = task.task;
-    container.append(taskEl);
-  });
-
-  function deleteAll() {
-    const data = [];
-    container.remove();
-  }
-  deleteAllBtn.addEventListener("click", deleteAll);
+  // data.forEach((task, index) => {
+  //   const taskEl = document.createElement("div");
+  //   taskEl.textContent = task.taskName;
+  //   container.append(taskEl);
+  //   console.log(taskEl);
+  // });
+  console.log(data);
+  // function deleteAll() {
+  //   const data = [];
+  //   container.remove();
+  // }
+  // deleteAllBtn.addEventListener("click", deleteAll);
 
 
   function isComplete() {
     completeTask.textContent = "Completed!";
     completeTask.setAttribute("class", "completed");
-    
+    localStorage.setItem("data", JSON.stringify(data));
   }
 
   completeTask.addEventListener("click", isComplete);
@@ -57,17 +59,18 @@ function createTask() {
   function deleteThisTask(e) {
     console.log(e.target.parentElement);
     e.target.parentElement.remove();
+    localStorage.setItem("data", JSON.stringify(data));
   }
   deleteTask.addEventListener("click", deleteThisTask);
 
 
   function deleteCompleted() {
-    data.forEach((taskEl) => {
+    data.forEach((i) => {
      if( completeTask.getAttribute("class")=="completed"){
        newTask.remove();
      }
   });
- 
+  localStorage.setItem("data", JSON.stringify(data));
       
   }
   deleteCompletedBtn.addEventListener("click", deleteCompleted);
@@ -85,6 +88,7 @@ function createTask() {
   editor.setAttribute("placeholder", "your edit");
   updateTask2.setAttribute("name", "[data-update2]"); 
   console.log(editor);
+
 }
   editTask.addEventListener("click", edit);
 
@@ -102,7 +106,8 @@ function editBtn(e){
   newTask2.setAttribute("class", "newTask");
   container.append(newTask2);
   body.appendChild(container);
-
+  data.push(newTask);
+  localStorage.setItem("data", JSON.stringify(data));
 }
 
 
@@ -131,9 +136,10 @@ localStorage.setItem("data", JSON.stringify(data));
 saveNewTask.addEventListener("click", createTask);
 
 function deleteAll() {
-  //delete from localStorage
+  //delete from localStorage √
   const data = [];
   container.remove();
+  localStorage.clear();
 }
 deleteAllBtn.addEventListener("click", deleteAll);
 
