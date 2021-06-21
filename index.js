@@ -33,20 +33,16 @@ function createTask() {
   container.appendChild(newTask);
   body.appendChild(container);
 
+  //not necessary for now:
   // data.forEach((task, index) => {
   //   const taskEl = document.createElement("div");
   //   taskEl.textContent = task.taskName;
   //   container.append(taskEl);
   //   console.log(taskEl);
   // });
+
   console.log(data);
-  // function deleteAll() {
-  //   const data = [];
-  //   container.remove();
-  // }
-  // deleteAllBtn.addEventListener("click", deleteAll);
-
-
+ 
   function isComplete() {
     completeTask.textContent = "Completed!";
     completeTask.setAttribute("class", "completed");
@@ -95,7 +91,7 @@ function createTask() {
 
 
 function editBtn(e){
-  //change to edit existing taskName.textContent
+  //TODO change to edit existing taskName.textContent
   newTask.remove();
   let taskName2 = document.createElement("div");
   taskName2.textContent=editor.value;
@@ -121,12 +117,10 @@ function isComplete(e){
 
   console.log(e.target.parentElement.lastChild.getAttribute("class"));
 
-  //by accessing data array in local storage
+  //bad choice example - by accessing data array in local storage using global const
   x="completed already";
   console.log(x);
-  // console.log(data);
-  // console.log( data[0]);
-  // console.log(data[0].completed);
+
 }
 completeTask.addEventListener("click", isComplete);
 
